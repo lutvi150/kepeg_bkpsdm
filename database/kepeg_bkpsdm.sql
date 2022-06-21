@@ -1,0 +1,53 @@
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+DROP TABLE IF EXISTS `tb_pegawai`;
+CREATE TABLE `tb_pegawai` (
+  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `nama_pegawai` varchar(255) DEFAULT NULL,
+  `nip` varchar(18) DEFAULT NULL,
+  `gol` varchar(6) DEFAULT NULL,
+  `tmt_gol` varchar(20) DEFAULT NULL,
+  `kgb_tmt` varchar(20) DEFAULT NULL,
+  `nama_jabatan` varchar(255) DEFAULT NULL,
+  `tmt` varchar(20) DEFAULT NULL,
+  `jenjang_pendidikan` varchar(20) DEFAULT NULL,
+  `jenis_kelamin` varchar(3) DEFAULT NULL,
+  `agama` varchar(20) DEFAULT NULL,
+  `eseon_non_eselon` varchar(20) DEFAULT NULL,
+  `perangkat_daerah` varchar(255) DEFAULT NULL,
+  `unit_kerja` varchar(255) DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `update_at` datetime DEFAULT NULL,
+  UNIQUE KEY `id` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+DROP TABLE IF EXISTS `tb_user`;
+CREATE TABLE `tb_user` (
+  `id_user` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+  `email` varchar(255) DEFAULT NULL,
+  `password` varchar(255) DEFAULT NULL,
+  `role` varchar(20) DEFAULT NULL,
+  UNIQUE KEY `id` (`id_user`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+
+
+INSERT INTO `tb_user` (`id_user`, `email`, `password`, `role`) VALUES
+(2, 'admin@gmail.com', '21232f297a57a5a743894a0e4a801fc3', 'admin');
+
+
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
