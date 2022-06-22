@@ -45,7 +45,18 @@ class Model extends CI_Model
         $this->db->where('email', $email);
         $this->db->where('password', $password);
         return $this->db->get()->row();
-
+    }
+    // pagination data
+    public function pagination_data($limit, $start, $table)
+    {
+        $this->db->limit($limit, $start);
+        $this->db->from($table);
+        return $this->db->get()->result();
+    }
+    public function pagination_total_rows($table)
+    {
+        $this->db->from($table);
+        return $this->db->count_all_results();
     }
 
 }

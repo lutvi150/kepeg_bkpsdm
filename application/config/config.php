@@ -139,7 +139,7 @@ $config['subclass_prefix'] = 'MY_';
 | Note: This will NOT disable or override the CodeIgniter-specific
 |    autoloading (application/config/autoload.php)
  */
-$config['composer_autoload'] = false;
+$config['composer_autoload'] = 'vendor/autoload.php';
 
 /*
 |--------------------------------------------------------------------------
@@ -491,7 +491,7 @@ $config['compress_output'] = false;
 | helper' page of the user guide for information regarding date handling.
 |
  */
-$config['time_reference'] = 'local';
+$config['time_reference'] = date_default_timezone_set('Asia/Jakarta');
 
 /*
 |--------------------------------------------------------------------------

@@ -19,7 +19,7 @@
 											</span>
 											<div class="media-body">
 												<p class="fs-14 mb-2">Total Pegawai</p>
-												<span class="title text-black font-w600">0</span>
+												<span class="title text-black font-w600"><?=$pegawai?></span>
 											</div>
 										</div>
 										<div class="progress" style="height:5px;">
@@ -73,7 +73,7 @@
 									<div class="effect bg-danger"></div>
 								</div>
 							</div>
-						
+
 						</div>
 					</div>
 					<div hidden class="col-xl-12 col-xxl-12">
