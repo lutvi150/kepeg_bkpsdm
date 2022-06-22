@@ -18,12 +18,18 @@
 	<link
 		href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&family=Roboto:wght@100;300;400;500;700;900&display=swap"
 		rel="stylesheet">
-		<script src="<?=base_url();?>assets/vendor/jquery/jquery.min.js"></script>
+		<script src="<?=base_url();?>node_modules/jquery/dist/jquery.js"></script>
 		<script src="<?=base_url();?>assets/vendor/form-master/dist/jquery.form.min.js"></script>
 		<script src="<?=base_url();?>node_modules/sweetalert/dist/sweetalert.min.js"></script>
+
+    <!-- Datatable -->
+    <!-- <script src="<?=base_url()?>assets/vendor/datatables/js/jquery.dataTables.min.js"></script>
+    <script src="<?=base_url()?>assets/js/plugins-init/datatables.init.js"></script> -->
+	<script src="<?=base_url();?>node_modules/datatables.net/js/jquery.dataTables.js"></script>
+	<script src="<?=base_url();?>node_modules/datatables.net-dt/js/dataTables.dataTables.js"></script>
 </head>
 
-<body>
+<body onload="zoom()">
 
 	<!--*******************
         Preloader start
@@ -50,10 +56,11 @@
 		<div class="nav-header">
 			<a href="<?=base_url()?>" class="brand-logo">
 				<img class="logo-abbr" src="<?=base_url()?>assets/images/logo.png" alt="">
-				<img class="logo-compact" src="<?=base_url()?>assets/images/logo-text.png" alt="">
-				<img class="brand-title" src="<?=base_url()?>assets/images/logo-text.png" alt="">
+				<img class="logo-compact" src="<?=base_url()?>assets/images/logo.png" alt="">
+				<!-- <img class="brand-title" src="<?=base_url()?>assets/images/logo.png" alt=""> -->
+				<h3 style="text-center">
+			BKPSDM KOTA PAYAKUMBUH</h3>
 			</a>
-
 			<div class="nav-control">
 				<div class="hamburger">
 					<span class="line"></span><span class="line"></span><span class="line"></span>

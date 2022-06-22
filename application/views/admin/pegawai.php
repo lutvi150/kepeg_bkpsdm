@@ -33,7 +33,7 @@
      								</i>Format Import</a>
      						</div>
      						<div class="table-responsive">
-     							<table id="example3" class="display min-w850">
+     							<table id="data-pegawai" class="display min-w850">
      								<thead>
      									<tr>
      										<th>No</th>
@@ -50,6 +50,7 @@
      										<th>ESELON & NON ESELON</th>
      										<th>ORGANISASI PERANGKAT DAERAH</th>
      										<th>UNIT KERJA</th>
+											<th>TANGGAL PENSIUN</th>
      										<th>Action</th>
      									</tr>
      								</thead>
@@ -77,57 +78,40 @@
      <!--**********************************
             Content body end
         ***********************************-->
+		<script>
+		$("#data-pegawai").DataTable({
+			"processing": true,
+            "serverSide": true,
+            "order": [],
 
-     <script>
-     	$(document).ready(function () {
+            "ajax": {
+                "url": "<?php echo site_url('admin/get_pegawai') ?>",
+                "type": "POST"
+            },
 
-     		$(document).on("click", ".pagination li a", function (event) {
-     			event.preventDefault();
-     			var page = $(this).data("ci-pagination-page");
-     			loadpag(page);
-     		});
 
-     	});
-     	loadpag(1);
-
-     	function loadpag(page) {
-
-     		$.ajax({
-     			url: "<?php echo base_url('admin/pagination_pegawai'); ?>/" + page,
-     			type: 'get',
-     			dataType: 'json',
-     			success: function (json) {
-					let table="";
-     				$.each(json.pagination_results, function (key, value) {
-     					table += `<tr>
-											<td>${key+1}</td>
-											<td>${value.nama_pegawai}</td>
-											<td>${value.nip}</td>
-											<td>${value.gol}</td>
-											<td>${value.tmt_gol}</td>
-											<td>${value.kgb_tmt}</td>
-											<td>${value.nama_jabatan}</td>
-											<td>${value.tmt_jabatan}</td>
-											<td>${value.jenjang_pendidikan}</td>
-											<td>${value.jenis_kelamin}</td>
-											<td>${value.agama}</td>
-											<td>${value.eselon_non_eselon}</td>
-											<td>${value.perangkat_daerah}</td>
-											<td>${value.unit_kerja}</td>
-											<td>
-											<button type="button" class="btn btn-primary btn-xs">
-													<i class="fa fa-edit"></i>
-												</button>
+            "columnDefs": [
+            {
+                "targets": [ 0 ],
+                "orderable": false,
+            },
+			{
+				"targets": [14],
+				"mRender": function (data, type, row) {
+					return "-";
+				}
+			},
+			{
+                "targets": [ 15 ],
+                "mRender": function (data, type, row) {
+                    return `
 												<button type="button" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></button>
-												<button type="button" class="btn btn-success btn-xs"><i class="fa fa-move">Pindah</button>
-											</td>
-										</tr>`;
-     				});
+												<button type="button" class="btn btn-warning btn-xs"><i class="fa fa-edit"></i></button>`;
+                }
+            }
+            ],
 
-     				$('.show-data').html(table);
-     				$('#pagination_links').html(json.pagination_links);
-     			},
-     		});
-     	}
+		});
 
      </script>
+

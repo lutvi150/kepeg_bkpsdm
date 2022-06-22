@@ -5,6 +5,14 @@ defined('BASEPATH') or exit('No direct script access allowed');
 class MigrateDatabase extends CI_Controller
 {
 
+    public function __construct()
+    {
+        parent::__construct();
+        $this->load->model('Model', 'model');
+        $this->load->model('ModelMigrate', 'modelMigrate');
+
+    }
+
     public function index()
     {
         $start = microtime(true);
@@ -35,6 +43,28 @@ class MigrateDatabase extends CI_Controller
             'data' => $result,
         ]);
 
+    }
+    public function getJabatan(Type $var = null)
+    {
+        $start = microtime(true);
+        $jabatan = $this->modelMigrate->getJabatan();
+        foreach ($jabatan as $key => $value) {
+            $kuata = $this->model->findData('tb_pegawai', 'nama_jabatan', $value->nama_jabatan)->num_rows();
+            $result[] = [
+                'nama_jabatan' => $value->nama_jabatan,
+                'kuata' => $kuata,
+                'terisi' => $kuata,
+                'sisa' => 0,
+                'created_at' => date('Y-m-d H:i:s'),
+            ];
+        }
+        $respon = [
+            'status' => 'success',
+            'time_execute' => microtime(true) - $start,
+            'data' => $result,
+        ];
+        $this->db->insert_batch('tb_jabatan', $result);
+        echo json_encode($respon);
     }
 
 }

@@ -58,6 +58,7 @@ class Model extends CI_Model
         $this->db->from($table);
         return $this->db->count_all_results();
     }
+    // get jabatan
 
 }
 

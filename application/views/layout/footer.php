@@ -1,7 +1,7 @@
 
         <div class="footer">
             <div class="copyright">
-                <p>Copyright © Designed &amp; Developed by <a href="#" target="_blank">BPS</a> 2021</p>
+                <p>Copyright © Designed &amp; Developed by <a href="https://www.instagram.com/hidayati19_/" target="_blank">HIDAYATI</a> 2022</p>
             </div>
         </div>
         <!--**********************************
@@ -35,55 +35,10 @@
 
 	<!-- Chart piety plugin files -->
     <script src="<?=base_url()?>assets/vendor/peity/jquery.peity.min.js"></script>
-
-	<!-- Apex Chart -->
-	<!-- <script src="<?=base_url()?>assets/vendor/apexchart/apexchart.js"></script> -->
-
-	<!-- Dashboard 1 -->
-	<!-- <script src="<?=base_url()?>assets/js/dashboard/dashboard-1.js"></script> -->
-
-    <!-- Datatable -->
-    <script src="<?=base_url()?>assets/vendor/datatables/js/jquery.dataTables.min.js"></script>
-    <script src="<?=base_url()?>assets/js/plugins-init/datatables.init.js"></script>
-	<script>
-		function carouselReview(){
-			/*  testimonial one function by = owl.carousel.js */
-			jQuery('.testimonial-one').owlCarousel({
-				loop:true,
-				autoplay:true,
-				margin:30,
-				nav:false,
-				dots: false,
-				left:true,
-				navText: ['<i class="fa fa-chevron-left" aria-hidden="true"></i>', '<i class="fa fa-chevron-right" aria-hidden="true"></i>'],
-				responsive:{
-					0:{
-						items:1
-					},
-					484:{
-						items:2
-					},
-					882:{
-						items:3
-					},
-					1200:{
-						items:2
-					},
-
-					1540:{
-						items:3
-					},
-					1740:{
-						items:4
-					}
-				}
-			})
-		}
-		jQuery(window).on('load',function(){
-			setTimeout(function(){
-				carouselReview();
-			}, 1000);
-		});
-	</script>
+<script>
+	function zoom() {
+            document.body.style.zoom = "67%"
+        }
+</script>
 </body>
 </html>

@@ -40,7 +40,7 @@
 											</span>
 											<div class="media-body">
 												<p class="fs-14 mb-2">Total Jabatan</p>
-												<span class="title text-black font-w600">0</span>
+												<span class="title text-black font-w600"><?=$jabatan?></span>
 											</div>
 										</div>
 										<div class="progress" style="height:5px;">

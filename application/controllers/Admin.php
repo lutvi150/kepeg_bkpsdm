@@ -9,6 +9,9 @@ class Admin extends CI_Controller
     {
         parent::__construct();
         $this->load->model('Model', 'model');
+        $this->load->model('PgJabatan', 'pgJabatan');
+        $this->load->model('PgPegawai', 'pgPegawai');
+
         if ($this->session->userdata('role') !== 'admin') {
             $this->session->set_flashdata('error', 'Akses dilarang');
             redirect('/');
@@ -70,6 +73,7 @@ class Admin extends CI_Controller
 
         $data['title'] = 'Dashboard';
         $data['pegawai'] = $this->model->pagination_total_rows('tb_pegawai');
+        $data['jabatan'] = $this->pgJabatan->countKuataJabatan()->kuata;
         $this->menu('admin/dashboard', $data);
         // echo json_encode($data);
 
@@ -152,7 +156,7 @@ class Admin extends CI_Controller
                     'jenjang_pendidikan' => $this->input->post('jenjang_pendidikan'),
                     'jenis_kelamin' => $this->input->post('jenis_kelamin'),
                     'agama' => $this->input->post('agama'),
-                    'eseon_non_eselon' => $this->input->post('eseon_non_eselon'),
+                    'eselon_non_eselon' => $this->input->post('eselon_non_eselon'),
                     'perangkat_daerah' => $this->input->post('perangkat_daerah'),
                     'unit_kerja' => $this->input->post('unit_kerja'),
                     'source' => 'manual',
@@ -319,43 +323,71 @@ class Admin extends CI_Controller
         ];
         echo json_encode($result);
     }
-    public function pagination_pegawai()
+    public function get_pegawai()
     {
-        $json = array();
 
-        $this->load->library('pagination');
+        $list = $this->pgPegawai->get_datatables();
+        $data = array();
+        $no = $_POST['start'];
+        foreach ($list as $field) {
+            $no++;
+            $row = array();
+            $row[] = $no;
+            $row[] = $field->nama_pegawai;
+            $row[] = $field->nip;
+            $row[] = $field->gol;
+            $row[] = $field->tmt_gol;
+            $row[] = $field->kgb_tmt;
+            $row[] = $field->nama_jabatan;
+            $row[] = $field->tmt_jabatan;
+            $row[] = $field->jenjang_pendidikan;
+            $row[] = $field->jenis_kelamin;
+            $row[] = $field->agama;
+            $row[] = $field->eselon_non_eselon;
+            $row[] = $field->perangkat_daerah;
+            $row[] = $field->unit_kerja;
+            $data[] = $row;
+        }
 
-        $config['base_url'] = base_url('admin/pagination');
-        $config['total_rows'] = $this->model->pagination_total_rows('tb_pegawai');
-        $config['per_page'] = 10;
-        $config['uri_segment'] = 3;
-        $config["use_page_numbers"] = true;
-        $config['num_links'] = "16";
-        $config['full_tag_open'] = "<ul class='pagination'>";
-        $config['full_tag_close'] = "</ul>";
-        $config['num_tag_open'] = '<li>';
-        $config['num_tag_close'] = '</li>';
-        $config['cur_tag_open'] = "<li class='disabled'><li class='active'><a href='#'>";
-        $config['cur_tag_close'] = "<span class='sr-only'></span></a></li>";
-        $config['next_tag_open'] = "<li>";
-        $config['next_tagl_close'] = "</li>";
-        $config['prev_tag_open'] = "<li>";
-        $config['prev_tagl_close'] = "</li>";
-        $config['first_tag_open'] = "<li>";
-        $config['first_tagl_close'] = "</li>";
-        $config['last_tag_open'] = "<li>";
-        $config['last_tagl_close'] = "</li>";
+        $output = array(
+            "draw" => $_POST['draw'],
+            "recordsTotal" => $this->pgPegawai->count_all(),
+            "recordsFiltered" => $this->pgPegawai->count_filtered(),
+            "data" => $data,
+        );
+        echo json_encode($output);
+    }
+    // use for jabatan
+    public function jabatan(Type $var = null)
+    {
+        $data['title'] = "Data Jabatan";
+        $this->menu('admin/jabatan', $data);
+        // echo json_encode($data);
+    }
+    public function get_jabatan()
+    {
 
-        $this->pagination->initialize($config);
+        $list = $this->pgJabatan->get_datatables();
+        $data = array();
+        $no = $_POST['start'];
+        foreach ($list as $field) {
+            $no++;
+            $row = array();
+            $row[] = $no;
+            $row[] = $field->nama_jabatan;
+            $row[] = $field->kuata;
+            $row[] = $field->terisi;
+            $row[] = $field->sisa;
+            $data[] = $row;
+        }
 
-        $page = $this->uri->segment(3);
-        $start = ($page - 1) * $config["per_page"];
-
-        $json = [
-            'pagination_links' => $this->pagination->create_links(),
-            'pagination_results' => $this->model->pagination_data($config["per_page"], $start, 'tb_pegawai'),
-        ];
-        echo json_encode($json);
+        $output = array(
+            "draw" => $_POST['draw'],
+            "recordsTotal" => $this->pgJabatan->count_all(),
+            "recordsFiltered" => $this->pgJabatan->count_filtered(),
+            "data" => $data,
+        );
+        echo json_encode($output);
     }
 
 }
