@@ -364,6 +364,38 @@ class Admin extends CI_Controller
         $this->menu('admin/jabatan', $data);
         // echo json_encode($data);
     }
+    // add jabatan
+    public function storeJabatan(Type $var = null)
+    {
+        $this->form_validation->set_rules('nama_jabatan', 'nama_jabatan', 'trim|required|is_unique[tb_jabatan.nama_jabatan]', [
+            'required' => 'Nama Jabatan Tidak Boleh Kosong',
+            'is_unique' => 'Nama Jabatan Sudah Ada',
+        ]);
+        $this->form_validation->set_rules('kuata', 'Kuata', 'trim|required|numeric', [
+            'required' => 'Kuata Tidak Boleh Kosong',
+            'numeric' => 'Kuata Haris Berupa Angka',
+        ]);
+
+        if ($this->form_validation->run() == false) {
+            $respon = [
+                'status' => 'validation_failed',
+                'msg' => $this->form_validation->error_array(),
+            ];
+        } else {
+            $insert = [
+                'nama_jabatan' => $this->input->post('nama_jabatan'),
+                'kuata' => $this->input->post('kuata'),
+                'created_at' => date('Y-m-d H:i:s'),
+            ];
+            $this->model->insertData('tb_jabatan', $insert);
+            $respon = [
+                'status' => 'success',
+                'msg' => 'Jabatan Berhasil di Tambahkan',
+            ];
+        }
+        echo json_encode($respon);
+
+    }
     public function get_jabatan()
     {
 
