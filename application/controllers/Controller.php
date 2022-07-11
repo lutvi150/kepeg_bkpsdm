@@ -79,6 +79,16 @@ class Controller extends CI_Controller
         $this->session->sess_destroy();
         redirect('/');
     }
+    // use for tes views
+    public function tes(Type $var = null)
+    {
+        $data = null;
+        $this->load->view('tesViews/header', $data, false);
+        $this->load->view('tesViews/sidebar', $data, false);
+        $this->load->view('tesViews/jabatan', $data, false);
+        $this->load->view('tesViews/footer', $data, false);
+
+    }
 }
 
 /* End of file  Controller.php */

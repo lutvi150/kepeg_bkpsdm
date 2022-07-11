@@ -113,6 +113,7 @@
      								<th>AGAMA</th>
      								<th>ORGANISASI PERANGKAT DAERAH</th>
      								<th>UNIT KERJA</th>
+     								<th>Action</th>
      							</tr>
      						</thead>
 							<tbody class="body-data-pegawai">
@@ -131,6 +132,9 @@
         ***********************************-->
 
      	<script>
+			$(document).ready(function () {
+				showModal();
+			});
      		let url = "<?=base_url('')?>";
      		$("#data-pegawai").DataTable({
      			"processing": true,

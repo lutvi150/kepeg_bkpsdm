@@ -424,6 +424,19 @@ class Admin extends CI_Controller
         );
         echo json_encode($output);
     }
+    public function getSpesifikPegawaiByJabatan(Type $var = null)
+    {
+        $start = microtime(true);
+        $jabatan = $this->input->post('nama_jabatan');
+        $findJabatan = $this->model->findData('tb_pegawai', 'nama_jabatan', $jabatan)->result();
+        $respon = [
+            'status' => 'success',
+            'data' => $findJabatan,
+            'count' => count($findJabatan),
+            'time_elapsed_secs' => microtime(true) - $start,
+        ];
+        echo json_encode($respon);
+    }
 
 }
 
