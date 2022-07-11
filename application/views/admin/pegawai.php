@@ -51,6 +51,7 @@
      										<th>ORGANISASI PERANGKAT DAERAH</th>
      										<th>UNIT KERJA</th>
 											<th>TANGGAL PENSIUN</th>
+											<th>ACOUNT</th>
      										<th>Action</th>
      									</tr>
      								</thead>
@@ -104,6 +105,21 @@
 			{
                 "targets": [ 15 ],
                 "mRender": function (data, type, row) {
+					let color="";let text="";
+					if (row[14]==false) {
+						color='danger';text='Belum Aktif';
+					} else{
+						color='success';text='Aktif'
+					}
+                    return `<span class="badge light badge-${color}">${text}</span>`;
+                }
+            },{
+                "targets": [ 16 ],
+                "mRender": function (data, type, row) {
+					let aktifkanUser="";
+					if (row[14]==false) {
+						aktifkanUser=`<button type="button" onclick="makeAccount(${row})" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></button>`
+					}
                     return `
 												<button type="button" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i></button>
 												<button type="button" class="btn btn-warning btn-xs"><i class="fa fa-edit"></i></button>`;

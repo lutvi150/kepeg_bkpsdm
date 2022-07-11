@@ -330,6 +330,8 @@ class Admin extends CI_Controller
         $data = array();
         $no = $_POST['start'];
         foreach ($list as $field) {
+            $statusAccount = $this->model->accountCheck($field->nip);
+            $account = $statusAccount == null ? false : true;
             $no++;
             $row = array();
             $row[] = $no;
@@ -346,6 +348,7 @@ class Admin extends CI_Controller
             $row[] = $field->eselon_non_eselon;
             $row[] = $field->perangkat_daerah;
             $row[] = $field->unit_kerja;
+            $row[] = $account;
             $data[] = $row;
         }
 

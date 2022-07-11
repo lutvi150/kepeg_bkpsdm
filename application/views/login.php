@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Sistem Informasi Kepegawaian <?=$this->config->item('head')?>| <?=$title?></title>
+    <title> <?=$this->config->item('app_name')?>| <?=$title?></title>
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="<?=base_url();?>assets/images/logo.png">
     <link href="<?=base_url();?>assets/css/style.css" rel="stylesheet">
@@ -30,7 +30,7 @@
 									<div class="text-center mb-3">
 										<a href="/"><img class="icon-login" src="<?=base_url();?>assets/images/logo.png" alt=""></a>
 									</div>
-                                    <h4 class="text-center mb-4 text-white">Login</h4>
+                                    <h4 class="text-center mb-4 text-white"><?=$this->config->item("app_nameS")?></h4>
 									<!-- error page -->
 									<?php if ($this->session->flashdata('error')): ?>
 									<div class="alert alert-danger alert-dismissible fade show">

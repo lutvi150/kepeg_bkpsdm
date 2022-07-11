@@ -59,6 +59,13 @@ class Model extends CI_Model
         return $this->db->count_all_results();
     }
     // get jabatan
+    public function accountCheck($nip)
+    {
+        $this->db->from('tb_user');
+        $this->db->where('email', $nip);
+        return $this->db->get()->row();
+
+    }
 
 }
 

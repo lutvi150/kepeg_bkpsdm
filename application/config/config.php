@@ -22,12 +22,13 @@ defined('BASEPATH') or exit('No direct script access allowed');
 | If you need to allow multiple domains, remember that this file is still
 | a PHP script and you can easily do that on your own.
 |
- */$base_url = ((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == "on") ? "https" : "http");
+ */
+$base_url = ((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] == "on") ? "https" : "http");
 // $base_url="https";
 $base_url .= "://" . @$_SERVER['HTTP_HOST'];
 $base_url .= str_replace(basename($_SERVER['SCRIPT_NAME']), "", $_SERVER['SCRIPT_NAME']);
 $config['base_url'] = $base_url;
-
+$config['app_name'] = "BKPSDM PAYAKUMBUH";
 /*
 |--------------------------------------------------------------------------
 | Index File
